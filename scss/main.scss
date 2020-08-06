@@ -1,0 +1,99 @@
+@import "_utilities.scss";
+
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background-color: rgb(211, 211, 211);
+    position: relative;
+}
+
+.plus-icon{
+    color: green;
+    transition: .2s;
+    font-size: 3rem;
+}
+
+.delete-icon{
+    @extend .plus-icon;
+    color: red;
+}
+
+
+.edit-icon{
+    @extend .plus-icon;
+    color: gray;
+}
+
+.plus-icon:hover:after{
+    content: 'add a new item';
+    @include tooltip(100px, 50px);
+}
+
+.delete-icon:hover:after{
+    content: 'delete this note';
+    @include tooltip(100px, 50px);
+}
+
+.edit-icon:hover:after{
+    content: 'modify this note';
+    @include tooltip(120px, 50px);
+}
+
+
+#categories{
+    .plus-icon{
+        font-size: 2rem;
+    }
+
+    .plus-icon:hover:after{
+        content: 'add a new category';
+        @include tooltip(125px, 50px);
+    }
+}
+
+.plus-icon:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+#current-category{
+    position: absolute;
+    top: 50px;
+    left: 300px;
+    background-color: #84DB00;
+    padding: 0.25rem 0.5rem;
+}
+
+#delete-current-category{
+    display: inline-block;
+    color: red;
+    transition: 0.2s;
+}
+
+#delete-current-category:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+#delete-current-category:hover:after{
+    content: 'Delete current category';
+    @include tooltip(150px, 25px);
+}
+
+.category{
+    display: inline-block;
+    background-color: #41F9D8;
+    padding: 0.3rem;
+    margin: 0rem 0.25rem;
+    transition: 0.2s;
+    border-radius: 15%;
+
+    &:hover{
+        cursor: pointer;
+        transform: scale(1.2);
+    }
+}

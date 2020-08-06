@@ -1,0 +1,10 @@
+@mixin tooltip($width, $left){
+    width: $width;
+    left: $left;
+
+    padding: 0.4rem;
+    position: absolute;
+    background-color: black;
+    color: white;
+    font-size: 0.8rem;
+}
