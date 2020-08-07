@@ -5,6 +5,8 @@ categories.forEach((el) => {
     el.addEventListener('click', categoryClick);
 });
 
+addItem.addEventListener('click', addItemClick);
+
 newCategoryAdd.addEventListener('click', (e) => {
     newCategoryContainer.classList.add('d-flex');
     newCategoryContainer.classList.remove('d-none');
@@ -21,12 +23,7 @@ newCategoryCheck.addEventListener('click', (e) =>{
     newCategoryInput.value = '';
 });
 
-deleteCategory.addEventListener('click', (e) => {
-    const category = currentCategory.innerText;
-    DOM.removeCategory(category);
-    Storage.removeCategory(category);
-});
-
+deleteCategory.addEventListener('click', deleteCategoryClick);
 
 
 DOM.init(Storage.getData());

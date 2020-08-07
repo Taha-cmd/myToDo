@@ -8,5 +8,8 @@ const newCategoryInput      = document.getElementById('new-category-input');
 const categoriesContainer   = document.getElementById('categories');
 const deleteCategory        = document.getElementById('delete-current-category');
 const itemsContainer        = document.getElementById('items');
+const addItem               = document.getElementById('add-item');
+const input                 = document.getElementById('input');
 
-const categories = Array.from(document.querySelectorAll('.category'));
+let categories      = Array.from(document.querySelectorAll('.category'));
+

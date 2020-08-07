@@ -22,7 +22,6 @@ class DOM {
                 el.remove();
             }
         });
-    
     }
 
     static makeItem(value){
@@ -53,7 +52,7 @@ class DOM {
         item.appendChild(div1);
         item.appendChild(div2);
 
-        itemsContainer.appendChild(item);
+        return item;
         
        /* `<div class="form-group item d-flex flex-row">
             <input type="text" class="form-control form-control-lg col-10" disabled value="${value}">
@@ -62,16 +61,53 @@ class DOM {
         </div>` */
     }
 
-
-
     static init(categories){
         const data = JSON.parse(categories);
          
         for(var category in data){
             categoriesContainer.appendChild(this.makeCategory(category));
         }
-
         currentCategory.innerText = 'general';
+        this.displayItems('general');
     }
 
+    static displayItems(category){
+        const items = Storage.getItems(category);
+        if(items === null) return;
+
+        items.forEach((item) => {
+            itemsContainer.appendChild(this.makeItem(item));
+        });
+
+        const deleteButtons = Array.from(document.querySelectorAll('.delete-icon'));
+        deleteButtons.forEach((button) => button.addEventListener('click', deleteClick));
+
+        const modifyButtons = Array.from(document.querySelectorAll('.edit-icon'));
+        modifyButtons.forEach((button) => button.addEventListener('click', modifyClick));
+    }
+
+    static removeItems(){
+        const items = Array.from(document.querySelectorAll('.item'));
+
+        items.forEach((item) => {
+            item.remove();
+        });
+    }
+
+    static addItem(value){
+        const item = this.makeItem(value);
+        itemsContainer.appendChild(item);
+        item.addEventListener('click', deleteClick);
+        item.addEventListener('click', modifyClick);
+    }
+
+    static removeItem(value){
+        const items = Array.from(document.querySelectorAll('.item'));
+
+        items.forEach((item) => {
+            if(item.firstChild.value === value){
+                item.remove();
+            }
+        });
+    }
 }
